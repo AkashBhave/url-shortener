@@ -14,6 +14,12 @@ var m = map[string]string{
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			w.WriteHeader(404)
+			fmt.Fprintf(w, "alias not found")
+			return
+		}
+
 		fmt.Fprintf(w, "welcome to Akash's URL shortener")
 	})
 
